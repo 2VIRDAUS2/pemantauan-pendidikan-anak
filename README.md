@@ -120,6 +120,24 @@ php artisan test --filter=PengajuanIzinTest
 -Use Case Diagram
 <img width="724" height="573" alt="image" src="https://github.com/user-attachments/assets/c6b41976-0f94-4159-bb8c-a5f494837e81" />
 
+-Class Diagram
+<img width="711" height="674" alt="image" src="https://github.com/user-attachments/assets/6acc9acf-7263-4da4-8d06-c187478e1a5a" />
+
+-Sequence Diagram
+<img width="940" height="426" alt="image" src="https://github.com/user-attachments/assets/3d808733-80cb-4722-86eb-a52a83b10628" />
+
+-Sequence Diagram (Alur Kedua)
+<img width="940" height="426" alt="image" src="https://github.com/user-attachments/assets/8d169f89-59ab-4fe5-be9a-564cbe91c7a6" />
+
+-Activity Diagram
+<img width="760" height="1029" alt="image" src="https://github.com/user-attachments/assets/3fa3bcf8-376b-430b-933c-0af618d0f8c7" />
+
+-Architecture Diagram
+<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/5a92d186-33e3-4433-9abc-8960139d47d0" />
+
+-ERD
+<img width="824" height="742" alt="image" src="https://github.com/user-attachments/assets/ed4ae545-a4ed-42be-936a-48f8fb69a5a5" />
+
 
 ## Lisensi
 
