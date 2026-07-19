@@ -121,7 +121,9 @@ php artisan test --filter=PengajuanIzinTest
 <img width="724" height="573" alt="image" src="https://github.com/user-attachments/assets/c6b41976-0f94-4159-bb8c-a5f494837e81" />
 
 -Class Diagram
-<img width="711" height="674" alt="image" src="https://github.com/user-attachments/assets/6acc9acf-7263-4da4-8d06-c187478e1a5a" />
+
+<img width="711" height="674" alt="image" src="https://github.com/user-attachments/assets/5cc037c7-4146-4c06-b4ec-d86ae871f2c5" />
+
 
 -Sequence Diagram
 <img width="940" height="426" alt="image" src="https://github.com/user-attachments/assets/3d808733-80cb-4722-86eb-a52a83b10628" />
