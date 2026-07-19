@@ -117,6 +117,8 @@ php artisan test --filter=PengajuanIzinTest
 ```
 
 ## UML
+-Use Case Diagram
+<img width="724" height="573" alt="image" src="https://github.com/user-attachments/assets/c6b41976-0f94-4159-bb8c-a5f494837e81" />
 
 
 ## Lisensi
