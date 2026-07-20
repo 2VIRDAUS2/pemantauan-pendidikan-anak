@@ -55,7 +55,7 @@ Setelah `db:seed`, tersedia 4 akun:
 
 ```bash
 # 1. Clone repositori
-git clone https://github.com/[user]/pemantauan-pendidikan-anak.git
+git clone https://github.com/2VIRDAUS2/pemantauan-pendidikan-anak.git
 cd pemantauan-pendidikan-anak
 
 # 2. Install dependency PHP
