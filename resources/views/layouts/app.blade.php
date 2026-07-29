@@ -41,6 +41,7 @@
             ['route' => 'guru.nilai.index', 'label' => 'Input Nilai', 'icon' => '📝'],
             ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => '📅'],
             ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => '📢'],
+            ['route' => 'profil.anak', 'label' => 'Data Anak', 'icon' => '👶'],
         ];
     } elseif ($isOrtu) {
         $menuItems = [

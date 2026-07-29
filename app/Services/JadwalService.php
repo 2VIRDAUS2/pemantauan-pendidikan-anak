@@ -11,10 +11,14 @@ class JadwalService
 
     public function getByKelas(string $kelas): Collection
     {
+        $urutanHari = ['Senin' => 1, 'Selasa' => 2, 'Rabu' => 3, 'Kamis' => 4, 'Jumat' => 5];
+
         return JadwalPelajaran::where('kelas', $kelas)
-            ->orderByRaw("FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat')")
-            ->orderBy('jam_mulai')
             ->get()
+            ->sortBy([
+                fn ($a, $b) => ($urutanHari[$a->hari] ?? 99) <=> ($urutanHari[$b->hari] ?? 99),
+                fn ($a, $b) => $a->jam_mulai <=> $b->jam_mulai,
+            ])
             ->groupBy('hari');
     }
 

@@ -1,0 +1,51 @@
+@startuml
+actor "Orang Tua" as ortu
+participant "Browser" as browser
+participant "Laravel App" as app
+database "Database" as db
+
+== Pengajuan Izin ==
+ortu -> browser: Klik "Ajukan Izin Baru"
+browser -> app: GET /orang-tua/pengajuan-izin/create
+app --> browser: Tampilkan form izin
+ortu -> browser: Isi form + upload file
+browser -> app: POST /orang-tua/pengajuan-izin\n(enctype=multipart/form-data)
+app -> app: Validasi request (PengajuanIzinRequest)
+app -> app: FileUploadService::toArray()
+app -> app: PengajuanIzinService::create()
+app -> db: INSERT pengajuan_izins
+db --> app: OK
+app --> browser: Redirect + flash success
+
+== Verifikasi Izin ==
+actor "Guru" as guru
+guru -> browser: Buka halaman verifikasi izin
+browser -> app: GET /guru/verifikasi-izin
+app -> db: SELECT pengajuan_izins WHERE status='pending'
+db --> app: Daftar izin
+app --> browser: Tampilkan daftar izin
+guru -> browser: Klik "Setujui"
+browser -> app: PATCH /guru/verifikasi-izin/{id}\n(status=approved)
+app -> app: PengajuanIzinService::approve()
+app -> db: UPDATE status='approved'
+app -> db: INSERT/UPDATE presensi (izin)
+app -> app: Kirim notifikasi ke orang tua
+app --> browser: Redirect + flash success
+
+== Jadwal Harian ==
+note over app: Scheduled: RekapAbsensiHarian\n(daily at 23:00, weekdays only)
+app -> db: SELECT all siswas
+loop for each siswa
+  app -> db: Check existing presensi today
+  alt presensi exists
+    note right: Skip - sudah diisi guru
+  else
+    app -> db: Check approved izin today
+    alt has approved izin
+      app -> db: INSERT presensi (izin)
+    else
+      app -> db: INSERT presensi (alpha)
+    end
+  end
+end
+@enduml

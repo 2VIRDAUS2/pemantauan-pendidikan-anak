@@ -23,13 +23,16 @@ class DashboardController extends Controller
         $user = $request->user();
         $siswas = $user->siswas()->with(['presensis', 'nilais', 'pengajuanIzins'])->get();
 
-        $siswaData = $siswas->map(function (Siswa $siswa) {
+        $hariIndonesia = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        $hariIni = $hariIndonesia[now()->dayOfWeek];
+
+        $siswaData = $siswas->map(function (Siswa $siswa) use ($hariIni) {
             $presensiHariIni = $siswa->presensis()
                 ->whereDate('tanggal', now()->toDateString())
                 ->first();
 
             $jadwalHariIni = $this->jadwalService->getByKelas($siswa->kelas)
-                ->get(now()->translatedFormat('l'));
+                ->get($hariIni);
 
             $izinPending = $siswa->pengajuanIzins()
                 ->where('status', 'pending')

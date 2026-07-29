@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnakController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\NilaiController;
@@ -32,11 +33,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/bukti-izin/{pengajuanIzin}', function (PengajuanIzin $pengajuanIzin) {
-        header('Content-Type: '.$pengajuanIzin->file_bukti_mime);
-        header('Content-Disposition: inline; filename="'.$pengajuanIzin->file_bukti_nama.'"');
-        echo base64_decode($pengajuanIzin->file_bukti_data);
-        exit;
+        $user = auth()->user();
+        $siswa = $pengajuanIzin->siswa;
+
+        if ($user->isGuru()) {
+            // Guru can view all
+        } elseif ($user->isOrangTua() && $siswa->orang_tua_id !== $user->id) {
+            abort(403, 'Anda tidak memiliki akses ke berkas ini.');
+        } else {
+            abort(403);
+        }
+
+        return response(base64_decode($pengajuanIzin->file_bukti_data), 200, [
+            'Content-Type' => $pengajuanIzin->file_bukti_mime,
+            'Content-Disposition' => 'inline; filename="'.$pengajuanIzin->file_bukti_nama.'"',
+        ]);
     })->name('bukti-izin.show');
+
+    // --- Legacy Anak CRUD ---
+    Route::get('/profil', [AnakController::class, 'ProfilAnak'])->name('profil.anak');
+    Route::get('/tambah_anak', [AnakController::class, 'TampilForm'])->name('tambah.anak');
+    Route::post('/simpan_anak', [AnakController::class, 'SimpanAnak'])->name('simpan.anak');
+    Route::get('/hapus_anak/{id}', [AnakController::class, 'HapusAnak'])->name('hapus.anak');
+    Route::get('/edit_anak/{id}', [AnakController::class, 'TampilFormEdit'])->name('edit.anak');
+    Route::post('/update_anak/{id}', [AnakController::class, 'UpdateAnak'])->name('update.anak');
 
     // --- Guru ---
     Route::prefix('guru')->name('guru.')->middleware('role:guru')->group(function () {

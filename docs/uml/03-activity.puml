@@ -1,0 +1,64 @@
+@startuml
+start
+:User mengakses sistem;
+
+if (Sudah login?) then (ya)
+  :Tampilkan dashboard sesuai role;
+else (tidak)
+  :Tampilkan halaman login;
+  :User memasukkan email & password;
+  if (Kredensial valid?) then (ya)
+    :Redirect ke dashboard;
+  else (tidak)
+    :Tampilkan error login;
+    stop
+  endif
+endif
+
+:User memilih menu;
+
+if (Role?) as role_switch
+
+elseif (Guru) then
+  :Tampilkan menu Guru;
+  if (Pilih fitur?) as guru_menu
+  elseif (Absensi) then
+    :Pilih kelas & tanggal;
+    :Catat kehadiran siswa;
+    :Simpan presensi;
+  elseif (Verifikasi Izin) then
+    :Lihat daftar izin pending;
+    :Setujui / Tolak izin;
+    :Kirim notifikasi ke Orang Tua;
+  elseif (Input Nilai) then
+    :Pilih siswa & mata pelajaran;
+    :Input skor;
+    :Simpan nilai;
+  elseif (Jadwal) then
+    :Lihat / Tambah / Hapus jadwal;
+  elseif (Pengumuman) then
+    :Buat / Nonaktifkan pengumuman;
+  endif
+
+elseif (Orang Tua) then
+  :Tampilkan menu Orang Tua;
+  if (Pilih fitur?) as ortu_menu
+  elseif (Dashboard) then
+    :Lihat ringkasan anak;
+  elseif (Ajukan Izin) then
+    :Pilih anak;
+    :Isi tanggal & alasan;
+    :Upload bukti dokumen;
+    :Kirim pengajuan;
+  elseif (Nilai & Presensi) then
+    :Lihat daftar anak;
+    :Pilih anak untuk detail;
+    :Tampilkan nilai & riwayat presensi;
+  elseif (Jadwal) then
+    :Lihat jadwal pelajaran;
+  endif
+
+endif
+
+stop
+@enduml

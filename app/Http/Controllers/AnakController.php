@@ -21,6 +21,13 @@ class AnakController extends Controller
 
     public function SimpanAnak(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'pendidikan' => 'required',
+            'umur' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
+
         $anak = new Anak;
         $anak->nama = $request->nama;
         $anak->pendidikan = $request->pendidikan;
@@ -28,7 +35,7 @@ class AnakController extends Controller
         $anak->alamat = $request->alamat;
         $anak->save();
 
-        return redirect('/profil');
+        return redirect()->route('profil.anak')->with('success', 'Data anak berhasil ditambahkan.');
     }
 
     public function HapusAnak($id)
@@ -38,7 +45,7 @@ class AnakController extends Controller
             $anak->delete();
         }
 
-        return redirect('/profil');
+        return redirect()->route('profil.anak')->with('success', 'Data anak berhasil dihapus.');
     }
 
     public function TampilFormEdit($id)
@@ -48,7 +55,7 @@ class AnakController extends Controller
             return view('edit_anak', ['anak' => $anak]);
         }
 
-        return redirect('/profil');
+        return redirect()->route('profil.anak');
     }
 
     public function UpdateAnak(Request $request, $id)
@@ -69,7 +76,7 @@ class AnakController extends Controller
             $anak->save();
         }
 
-        return redirect('/profil');
+        return redirect()->route('profil.anak')->with('success', 'Data anak berhasil diperbarui.');
     }
 
     public function GetProfilApi()

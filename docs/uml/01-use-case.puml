@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+actor "Guru" as guru
+actor "Orang Tua" as ortu
+actor "Admin" as admin
+
+rectangle "Sistem Pemantauan Pendidikan Anak" {
+  usecase "UC1 - Login" as UC1
+  usecase "UC2 - Kelola Absensi" as UC2
+  usecase "UC3 - Verifikasi Izin" as UC3
+  usecase "UC4 - Input Nilai" as UC4
+  usecase "UC5 - Ajukan Izin" as UC5
+  usecase "UC6 - Lihat Nilai & Presensi" as UC6
+  usecase "UC7 - Lihat Jadwal" as UC7
+  usecase "UC8 - Kelola Pengumuman" as UC8
+  usecase "UC9 - Kelola Data Anak (Legacy)" as UC9
+  usecase "UC10 - Lihat Dashboard" as UC10
+}
+
+guru --> UC1
+guru --> UC10
+guru --> UC2
+guru --> UC3
+guru --> UC4
+guru --> UC7
+guru --> UC8
+
+ortu --> UC1
+ortu --> UC10
+ortu --> UC5
+ortu --> UC6
+ortu --> UC7
+ortu --> UC8
+
+admin --> UC9
+@enduml

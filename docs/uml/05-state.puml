@@ -1,0 +1,27 @@
+@startuml
+
+state "Pengajuan Izin" as izin {
+  [*] --> PENDING : Orang Tua mengajukan
+  PENDING --> APPROVED : Guru menyetujui
+  PENDING --> REJECTED : Guru menolak
+  APPROVED --> [*]
+  REJECTED --> [*]
+}
+
+state "Presensi Siswa" as presensi {
+  [*] --> ALPHA : Belum dicatat (default)
+  ALPHA --> HADIR : Guru absen
+  ALPHA --> IZIN : Izin disetujui
+  ALPHA --> SAKIT : Guru absen
+  ALPHA --> ALPHA : Tidak hadir
+  HADIR --> HADIR : Diperbarui guru
+  IZIN --> IZIN
+  SAKIT --> SAKIT
+}
+
+state "Pengumuman" as pengumuman {
+  [*] --> AKTIF : Guru publikasi
+  AKTIF --> NONAKTIF : Guru nonaktifkan
+  NONAKTIF --> AKTIF : Guru aktifkan kembali
+}
+@enduml

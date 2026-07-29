@@ -22,9 +22,19 @@ class RekapAbsensiHarian implements ShouldQueue
     public function handle(): void
     {
         $today = now()->toDateString();
+
+        if (now()->isWeekend()) {
+            return;
+        }
+
         $allSiswas = Siswa::all();
 
         foreach ($allSiswas as $siswa) {
+            $existing = $siswa->presensis()->whereDate('tanggal', $today)->exists();
+            if ($existing) {
+                continue;
+            }
+
             $hasIzinApproved = $siswa->pengajuanIzins()
                 ->where('tanggal_izin', $today)
                 ->where('status', StatusPengajuan::APPROVED)
@@ -32,10 +42,10 @@ class RekapAbsensiHarian implements ShouldQueue
 
             $status = $hasIzinApproved ? 'izin' : 'alpha';
 
-            Presensi::updateOrCreate(
-                ['siswa_id' => $siswa->id, 'tanggal' => $today],
-                ['status' => $status]
-            );
+            $siswa->presensis()->create([
+                'tanggal' => $today,
+                'status' => $status,
+            ]);
         }
     }
 }

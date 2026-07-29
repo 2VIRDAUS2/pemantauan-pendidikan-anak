@@ -1,0 +1,124 @@
+@startuml
+namespace App\Models {
+
+class User {
+  -id: int
+  -name: string
+  -email: string
+  -password: string
+  -role: Role (enum)
+  -email_verified_at: ?datetime
+  +isGuru(): bool
+  +isOrangTua(): bool
+  +siswas(): HasMany
+  +verifikasiIzins(): HasMany
+}
+
+class Siswa {
+  -id: int
+  -orang_tua_id: int
+  -nisn: string
+  -nama_siswa: string
+  -kelas: string
+  +orangTua(): BelongsTo
+  +pengajuanIzins(): HasMany
+  +nilais(): HasMany
+  +presensis(): HasMany
+  +getPresensiHariIniAttribute(): ?Presensi
+  +getRataRataNilaiAttribute(): float
+}
+
+class Presensi {
+  -id: int
+  -siswa_id: int
+  -tanggal: date
+  -status: enum(hadir,izin,sakit,alpha)
+  +siswa(): BelongsTo
+  +scopeForDate($query, $date)
+}
+
+class Nilai {
+  -id: int
+  -siswa_id: int
+  -mata_pelajaran: string
+  -skor: float
+  +siswa(): BelongsTo
+}
+
+class PengajuanIzin {
+  -id: int
+  -siswa_id: int
+  -verifikator_id: ?int
+  -tanggal_izin: date
+  -alasan: string
+  -file_bukti_data: text
+  -file_bukti_nama: string
+  -file_bukti_mime: string
+  -status: StatusPengajuan (enum)
+  +siswa(): BelongsTo
+  +verifikator(): BelongsTo
+  +scopePending($query)
+  +getBuktiBase64Attribute(): string
+}
+
+class JadwalPelajaran {
+  -id: int
+  -kelas: string
+  -hari: string
+  -jam_mulai: string
+  -jam_selesai: string
+  -mata_pelajaran: string
+  -guru_id: int
+  +guru(): BelongsTo
+  +scopeForKelas($query, $kelas)
+  +scopeForHari($query, $hari)
+}
+
+class Pengumuman {
+  -id: int
+  -pengumum_by: int
+  -judul: string
+  -isi: text
+  -target_kelas: ?string
+  -is_aktif: bool
+  +pembuat(): BelongsTo
+  +scopeAktif($query)
+  +scopeUntukKelas($query, $kelas)
+}
+
+class Anak {
+  -id: int
+  -nama: string
+  -pendidikan: string
+  -umur: int
+  -alamat: string
+}
+
+}
+
+namespace App\Enums {
+enum Role: string {
+  GURU
+  ORANG_TUA
+  +label(): string
+}
+
+enum StatusPengajuan: string {
+  PENDING
+  APPROVED
+  REJECTED
+  +label(): string
+  +color(): string
+}
+}
+
+User "1" --o "0..*" Siswa : orang_tua_id
+User "1" --o "0..*" PengajuanIzin : verifikator_id
+User "1" --o "0..*" JadwalPelajaran : guru_id
+User "1" --o "0..*" Pengumuman : pengumum_by
+Siswa "1" --o "0..*" Presensi
+Siswa "1" --o "0..*" Nilai
+Siswa "1" --o "0..*" PengajuanIzin
+User --> Role
+PengajuanIzin --> StatusPengajuan
+@enduml

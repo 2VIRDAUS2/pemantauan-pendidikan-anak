@@ -1,0 +1,38 @@
+@startuml
+actor "User (Guru/Orang Tua)" as user
+node "Browser" as browser
+
+node "Web Server (Laragon)" as server {
+  node "PHP 8.3+" as php {
+    artifact "Laravel 13.x" as laravel {
+      [Laravel App]
+    }
+  }
+  node "Database Server" as dbserver {
+    database "MySQL 8.0" as mysql
+    database "SQLite" as sqlite
+  }
+  node "File System" as fs {
+    [Storage: Logs, Uploads (base64)]
+  }
+  node "Queue Worker" as queue {
+    [Job: RekapAbsensiHarian]
+  }
+}
+
+user --> browser : HTTPS
+browser --> server : HTTP/HTTPS
+laravel --> mysql : PDO (MySQL)
+laravel --> sqlite : PDO (SQLite)
+laravel --> fs : File I/O
+laravel --> queue : Database Queue
+
+note right of server
+  Deployment Environment:
+  - OS: Windows (Laragon)
+  - Web Server: Apache/Nginx
+  - PHP 8.3+
+  - Laravel Framework 13.x
+  - Database: MySQL or SQLite
+end note
+@enduml

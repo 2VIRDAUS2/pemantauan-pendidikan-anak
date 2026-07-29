@@ -1,0 +1,43 @@
+@startuml
+package "Frontend (Laravel Blade + Tailwind)" as frontend {
+  [Login View]
+  [Guru Dashboard]
+  [Presensi View]
+  [Verifikasi Izin View]
+  [Nilai View]
+  [Jadwal View]
+  [Pengumuman View]
+  [Orang Tua Dashboard]
+  [Pengajuan Izin View]
+  [Nilai Orang Tua View]
+  [Layout App (Sidebar + Nav)]
+}
+
+package "Backend (Laravel)" as backend {
+  [Controllers] as ctrl
+  [Services] as svc
+  [Models] as models
+  [Middleware] as mw
+  [Requests] as req
+  [Enums] as enums
+}
+
+package "Database" as db {
+  [MySQL / SQLite]
+}
+
+package "External" as ext {
+  [Queue (Database)]
+  [Mail (Log)]
+  [Sanctum Auth]
+}
+
+frontend --> ctrl : HTTP Request/Response
+ctrl --> req : Validasi
+ctrl --> svc : Business Logic
+ctrl --> mw : Role Check
+svc --> models : Eloquent ORM
+models --> db : Query
+svc --> ext : Queue Notification
+ctrl --> ext : Sanctum Auth
+@enduml

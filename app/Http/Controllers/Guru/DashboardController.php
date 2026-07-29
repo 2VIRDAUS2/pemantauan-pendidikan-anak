@@ -26,10 +26,12 @@ class DashboardController extends Controller
             'total_siswa' => Siswa::count(),
             'pending_izin' => PengajuanIzin::pending()->count(),
             'approved_bulan' => PengajuanIzin::where('status', 'approved')
-                ->whereMonth('created_at', now()->month)
+                ->whereMonth('updated_at', now()->month)
+                ->whereYear('updated_at', now()->year)
                 ->count(),
             'rejected_bulan' => PengajuanIzin::where('status', 'rejected')
-                ->whereMonth('created_at', now()->month)
+                ->whereMonth('updated_at', now()->month)
+                ->whereYear('updated_at', now()->year)
                 ->count(),
             'presensi_hari_ini' => Presensi::forDate($today)->count(),
             'hadir_hari_ini' => Presensi::forDate($today)->where('status', 'hadir')->count(),

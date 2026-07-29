@@ -10,7 +10,7 @@ class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        if (! $request->user() || ! $request->user()->email_verified_at) {
+        if (! $request->user()) {
             abort(403, 'Unauthorized.');
         }
 
