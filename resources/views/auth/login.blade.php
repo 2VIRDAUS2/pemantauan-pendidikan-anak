@@ -55,10 +55,10 @@
 
             {{-- Logo & Header --}}
             <div class="text-center mb-8">
-                <div class="float-anim inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-3xl shadow-2xl shadow-orange-500/30 mb-4">
-                     <img src="{{ asset('images/logo.png') }}" alt="Logo Pemantauan Pendidikan" class="w-full h-full object-contain">
+                <div class="float-anim inline-flex items-center justify-center w-20 h-20">
+                     <img src="{{ asset('images/twh.png') }}" alt="Logo Pemantauan Pendidikan" class="w-full h-full object-contain">
                 </div>
-                <h1 class="text-3xl font-extrabold text-white mb-2 drop-shadow-lg">Pemantauan Pendidikan</h1>
+                <h1 class="text-3xl font-extrabold text-black mb-2 drop-shadow-lg">Pemantauan Pendidikan</h1>
                 <p class="text-blue-200 text-sm font-medium">Sistem Monitoring Pendidikan Anak SD</p>
             </div>
 

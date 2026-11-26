@@ -37,7 +37,7 @@
         $menuItems = [
             ['route' => 'guru.dashboard', 'label' => 'Dashboard', 'icon' => ''],
             ['route' => 'guru.presensi.index', 'label' => 'Absensi', 'icon' => ''],
-            ['route' => 'guru.verifikasi-izin.index', 'label' => 'Verifikasi Izin', 'icon' => '✅'],
+            ['route' => 'guru.verifikasi-izin.index', 'label' => 'Verifikasi Izin', 'icon' => ''],
             ['route' => 'guru.nilai.index', 'label' => 'Input Nilai', 'icon' => ''],
             ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => ''],
             ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => ''],
@@ -103,7 +103,7 @@
     <div id="overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden" onclick="toggleSidebar()"></div>
 
     <div class="flex-1 lg:ml-64">
-        <header class="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <header class="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
             <div class="flex items-center justify-between px-4 sm:px-6 py-3">
                 <button onclick="toggleSidebar()" class="lg:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
