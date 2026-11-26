@@ -21,7 +21,7 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .bg-animated {
-            background: linear-gradient(-45deg, #1e3a5f, #2d1b69, #1a365d, #4c1d95);
+            background: white;rgb(153, 161, 171)
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -56,7 +56,7 @@
             {{-- Logo & Header --}}
             <div class="text-center mb-8">
                 <div class="float-anim inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-3xl shadow-2xl shadow-orange-500/30 mb-4">
-                    <span class="text-4xl">🏫</span>
+                     <img src="{{ asset('images/logo.png') }}" alt="Logo Pemantauan Pendidikan" class="w-full h-full object-contain">
                 </div>
                 <h1 class="text-3xl font-extrabold text-white mb-2 drop-shadow-lg">Pemantauan Pendidikan</h1>
                 <p class="text-blue-200 text-sm font-medium">Sistem Monitoring Pendidikan Anak SD</p>
@@ -65,7 +65,7 @@
             {{-- Login Card --}}
             <div class="card-glass rounded-3xl shadow-2xl shadow-black/20 p-8 sm:p-10">
                 <div class="text-center mb-6">
-                    <h2 class="text-xl font-bold text-gray-800">Selamat Datang 👋</h2>
+                    <h2 class="text-xl font-bold text-gray-800">Selamat Datang</h2>
                     <p class="text-sm text-gray-500 mt-1">Masuk ke akun Anda untuk melanjutkan</p>
                 </div>
 
@@ -100,7 +100,7 @@
 
                     {{-- Email --}}
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">📧 Alamat Email</label>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Alamat Email</label>
                         <input
                             type="email"
                             id="email"
@@ -115,7 +115,7 @@
 
                     {{-- Password --}}
                     <div>
-                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-1.5">🔒 Kata Sandi</label>
+                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-1.5">Kata Sandi</label>
                         <input
                             type="password"
                             id="password"

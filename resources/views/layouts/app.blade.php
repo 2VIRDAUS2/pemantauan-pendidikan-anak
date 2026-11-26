@@ -35,21 +35,21 @@
     $menuItems = [];
     if ($isGuru) {
         $menuItems = [
-            ['route' => 'guru.dashboard', 'label' => 'Dashboard', 'icon' => '📊'],
-            ['route' => 'guru.presensi.index', 'label' => 'Absensi', 'icon' => '📋'],
+            ['route' => 'guru.dashboard', 'label' => 'Dashboard', 'icon' => ''],
+            ['route' => 'guru.presensi.index', 'label' => 'Absensi', 'icon' => ''],
             ['route' => 'guru.verifikasi-izin.index', 'label' => 'Verifikasi Izin', 'icon' => '✅'],
-            ['route' => 'guru.nilai.index', 'label' => 'Input Nilai', 'icon' => '📝'],
-            ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => '📅'],
-            ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => '📢'],
-            ['route' => 'profil.anak', 'label' => 'Data Anak', 'icon' => '👶'],
+            ['route' => 'guru.nilai.index', 'label' => 'Input Nilai', 'icon' => ''],
+            ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => ''],
+            ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => ''],
+            ['route' => 'profil.anak', 'label' => 'Data Anak', 'icon' => ''],
         ];
     } elseif ($isOrtu) {
         $menuItems = [
-            ['route' => 'orang-tua.dashboard', 'label' => 'Dashboard', 'icon' => '🏠'],
-            ['route' => 'orang-tua.pengajuan-izin.index', 'label' => 'Pengajuan Izin', 'icon' => '📋'],
-            ['route' => 'orang-tua.nilai.index', 'label' => 'Nilai & Presensi', 'icon' => '📚'],
-            ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => '📅'],
-            ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => '📢'],
+            ['route' => 'orang-tua.dashboard', 'label' => 'Dashboard', 'icon' => ''],
+            ['route' => 'orang-tua.pengajuan-izin.index', 'label' => 'Pengajuan Izin', 'icon' => ''],
+            ['route' => 'orang-tua.nilai.index', 'label' => 'Nilai & Presensi', 'icon' => ''],
+            ['route' => 'jadwal.index', 'label' => 'Jadwal Pelajaran', 'icon' => ''],
+            ['route' => 'pengumuman.index', 'label' => 'Pengumuman', 'icon' => ''],
         ];
     }
 @endphp
@@ -59,8 +59,8 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 shadow-sm transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
         <div class="flex flex-col h-full">
             <div class="flex items-center gap-3 px-6 py-5 border-b border-gray-100">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-200">
-                    <span class="text-white text-lg font-bold">PA</span>
+                <div class="w-10 h-10 rounded-xl  flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <img src="{{ asset('images/twh.png') }}" alt="">
                 </div>
                 <div>
                     <h1 class="text-base font-bold text-gray-800">PendidikanAnak</h1>
